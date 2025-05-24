@@ -15,7 +15,7 @@ const About: React.FC = () => (
         <p>Trabalho com metodologias ágeis como Scrum e estou sempre buscando aprendizado contínuo.</p>
 
         <a
-            href="/curriculo-jean-carlos.pdf"
+            href="/Curriculo_JeanCarlos.pdf"
             download
             className="download-button"
         >
