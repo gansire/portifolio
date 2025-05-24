@@ -1,28 +1,55 @@
-const projects = [
-  {
-    title: 'Chatbot para WhatsApp',
-    description: 'Desenvolvimento de um sistema de chatbot integrado com WhatsApp Business API, permitindo comunicação automatizada e atendimento eficiente.',
-    link: '#',
-  }
-];
+import React, {useState} from 'react';
+import { motion } from 'framer-motion';
+import ProjectModal from './ProjectModal';
 
-export const Projects = () => {
+const Projects: React.FC = () => {
+  const projects = [
+    {
+      title: 'Chatbot para WhatsApp',
+      description: 'Sistema de chatbot com interface web integrado ao WhatsApp para atendimento automatizado.',
+      technologies: ["ReactJs", "Nodejs", "Express", "MongoDB", "Docker", "AWS"],
+      link: '#',
+    }
+  ];
+  const [selected, setSelected] = useState<number | null>(null);
   return (
-    <section id="projects">
+    <motion.section
+      id="projects"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
       <h2>Projetos</h2>
-      {projects.map((proj, idx) => (
-        <div key={idx} className="project">
-          <h3>{proj.title}</h3>
-          <p>{proj.description}</p>
+      {projects.map((p, i) => (
+        <motion.div
+          className="project"
+          key={i}
+          whileHover={{ scale: 1.03 }}
+          onClick={() => setSelected(i)}
+        >
+          <h3>{p.title}</h3>
+          <p>{p.description}</p>
           {
-            proj.link == "#"?
+            p.link == "#"?
             ""
             :
-            <a href={proj.link} target="_blank" rel="noopener noreferrer">Ver projeto</a>
+            <a href={p.link} target="_blank" rel="noopener noreferrer">Ver projeto</a>
           }
-          
-        </div>
+        </motion.div>
       ))}
-    </section>
+      {selected !== null && (
+        <ProjectModal
+          isOpen={true}
+          onClose={() => setSelected(null)}
+          title={projects[selected].title}
+          description={projects[selected].description}
+          technologies={projects[selected].technologies}
+          link={projects[selected].link}
+        />
+      )}
+    </motion.section>
   );
 };
+
+export default Projects;

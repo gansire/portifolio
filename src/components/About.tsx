@@ -1,10 +1,27 @@
-export const About = () => {
-  return (
-    <section id="about">
-      <h2>Sobre mim</h2>
-      <p>Sou desenvolvedor full stack com experiência em desenvolvimento e manutenção de aplicações web. Trabalhei por dois anos na Texxia, usando React, Node.js, TypeScript e MongoDB para criar soluções eficientes e escaláveis.</p>
-      <p>Tenho conhecimento sólido em front-end (HTML, CSS, SASS) e back-end (Express, MySQL, Docker), e aplico metodologias ágeis como Scrum para entregar resultados de qualidade.</p>
-      <p>Sou proativo, focado em aprendizado contínuo e busco sempre contribuir para equipes que valorizem inovação e boas práticas.</p>
-    </section>
-  );
-};
+import React from 'react';
+import { motion } from 'framer-motion';
+
+const About: React.FC = () => (
+    <motion.section
+        id="about"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+    >
+        <h2>Sobre mim</h2>
+        <p>Atuei por dois anos na Texxia como desenvolvedor PJ e CLT, com foco em aplicações web utilizando React, Node.js, TypeScript e MongoDB.</p>
+        <p>Tenho experiência sólida em front-end (HTML, SCSS) e também em back-end com Express, MySQL e Docker.</p>
+        <p>Trabalho com metodologias ágeis como Scrum e estou sempre buscando aprendizado contínuo.</p>
+
+        <a
+            href="/curriculo-jean-carlos.pdf"
+            download
+            className="download-button"
+        >
+            📄 Baixar Currículo
+        </a>
+    </motion.section>
+);
+
+export default About;
